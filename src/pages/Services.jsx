@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const servicesData = [
   {
@@ -47,6 +47,10 @@ const Services = () => {
   const [activeCategory, setActiveCategory] = useState("All");
   const [expandedId, setExpandedId] = useState(null);
 
+  useEffect(() => {
+    document.title = "Services";
+  }, []);
+
   const categories = useMemo(() => {
     return ["All", ...new Set(servicesData.map((service) => service.category))];
   }, []);
@@ -66,7 +70,6 @@ const Services = () => {
 
   return (
     <div>
-      <title>Services</title>
       <div className="py-32 bg-black text-center text-white px-4">
         <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5">
           Service Page

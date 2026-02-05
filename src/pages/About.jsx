@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const tabContent = [
   {
@@ -39,6 +39,10 @@ const tabContent = [
 const About = () => {
   const [activeTab, setActiveTab] = useState(tabContent[0].id);
 
+  useEffect(() => {
+    document.title = "About";
+  }, []);
+
   const activeContent = useMemo(
     () => tabContent.find((tab) => tab.id === activeTab),
     [activeTab]
@@ -46,7 +50,6 @@ const About = () => {
 
   return (
     <div>
-      <title>About</title>
       <div className="py-32 bg-black text-center text-white px-4">
         <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5">
           About Page

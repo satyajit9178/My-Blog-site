@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 
 const initialFormState = {
   name: "",
@@ -10,6 +10,10 @@ const initialFormState = {
 const Contact = () => {
   const [formValues, setFormValues] = useState(initialFormState);
   const [status, setStatus] = useState("");
+
+  useEffect(() => {
+    document.title = "Contact";
+  }, []);
 
   const messageCount = formValues.message.length;
   const isFormValid = useMemo(() => {
@@ -38,7 +42,6 @@ const Contact = () => {
 
   return (
     <div>
-      <title>Contact</title>
       <div className="py-32 bg-black text-center text-white px-4">
         <h1 className="text-5xl lg:text-7xl leading-snug font-bold mb-5">
           Contact Page
