@@ -17,10 +17,10 @@ const Login = ({ onClose, switchToSignup }) => {
       input.password === registeredUser.password
     ) {
       // Save login session
-      localStorage.setItem("loggedIn",true);
+      localStorage.setItem("loggedIn", true);
+      window.dispatchEvent(new Event("auth-change"));
       onClose(); // close modal
       alert("Login successful ✅");
-      window.location.reload(); // refresh to update Navbar
     } else {
       alert("❌ Wrong Email or Password");
     }

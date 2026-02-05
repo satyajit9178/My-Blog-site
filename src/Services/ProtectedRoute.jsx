@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react";
 import { Outlet, Link } from "react-router-dom";
 
 const ProtectedRoute = () => {
-  const auth = localStorage.getItem("loggedIn");
+  const [auth, setAuth] = useState(() => localStorage.getItem("loggedIn"));
+
+  useEffect(() => {
+    const syncAuth = () => setAuth(localStorage.getItem("loggedIn"));
+    window.addEventListener("storage", syncAuth);
+    window.addEventListener("auth-change", syncAuth);
+    return () => {
+      window.removeEventListener("storage", syncAuth);
+      window.removeEventListener("auth-change", syncAuth);
+    };
+  }, []);
 
   if (auth) return <Outlet />;
 
